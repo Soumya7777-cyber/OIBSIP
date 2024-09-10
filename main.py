@@ -1,29 +1,79 @@
-'''
-0 is for Rock
-1 is for Paper
-2 is for Scissors 
- '''
-import random
-computer=random.choice([0,1,2])
-younum=input("Enter your option:")
-youdict={"rock":0,"paper":1,"scissors":2}
-you=youdict[younum]# your inputed value(like 0,1,2) store in to the younum
-revdict={0:"rock",1:"paper",2:"scissors"}
-print(f"you choose {younum}")
-print(f"computer choose {revdict[computer]}")
-if(computer==you):
-    print("it is draw")
-elif(computer==0 and you==1):
-        print("you win !")
-elif(computer==0 and you==2):
-        print("computer win !")
-elif(computer==1 and you==0):
-        print("computer win !")
-elif(computer==1 and you==2):
-        print("you win !")
-elif(computer==2 and you==0):
-        print("you win !")
-elif(computer==2 and you==1):
-        print("computer win !")
-else:
-        print("Somthing Error !")
+import time
+print(".............PLEASE INSERT YOUR CARD..............")
+time.sleep(4)
+password=2580
+balance=60000
+l=[]
+i=1
+while (i<4):
+    if(i==3):
+            print("it is your final try,so please put your password very carefully. Otherwise you block for today !")
+    A=int(input("ENTER YOUR 4 DIGIT PIN: "))
+
+    if (password==A):
+        while True:
+            print('''
+                 ********* MAIN MENU ************
+               *     Enter 1 : Balance Inquiry    *
+             *       Enter 2 : Withdrawl            *
+           *         Enter 3 : Deposit                *
+         *           Enter 4 : Pin Change               *
+       *             Enter 5 : Transuction History         *
+    *                Enter 6 : Exit or Goto the Main Menu    *
+   ************************************************************
+                    ''')
+
+            option=int(input("Please enter Your choice:"))
+            if (option==1 or option==2 or option==3 or option==4 or option==5 or option==6):
+                    # for balance inquiry
+                    if(option==1):
+                        print("Your current balance is:")
+                        print(balance)
+                    # for withdrawl money
+                    elif(option==2):
+                        X=int(input("Enter the amount:"))
+                        if(balance>X):
+                            print("Your current balance is :")
+                            balance=balance-X
+                            print(balance)
+                        else:
+                             print("Insufficient balance !")
+                        l.append(f"{X} rs debited from your account")
+                    # for add money 
+                    elif(option==3):
+                        Y=int(input("Enter the amount:"))
+                        print("Please insert your cash in ATM machine")
+                        balance=balance+Y
+                        print(f"{Y} rupee successfully add in your account !")
+                        print("Your current balance is :")
+                        print(balance)
+                        l.append(f"{Y} rs credited in your account ")
+                    # for pin change
+                    elif(option==4):
+                         Z=int(input("Enter your previous 4 Digit Pin:"))
+                         if(password==Z):
+                              V=int(input("Please Enter the new 4 Digit Pin:"))
+                              password=V
+
+                         else:
+                              print("Your entered pin is wrong !")
+                    elif(option==5):
+                         print("**********Your last Transuctions are: *********** ")
+                         L=len(l)
+                         i=0
+                         while(i<L):
+                              print(l[i])
+                              i=i+1
+                    elif(option==6):
+                        break
+        
+
+            else:
+                 print(" Please enter the valid option !")
+            
+    else:
+        print("Your entered pin is wrong please try again !")
+        print(" ")
+        if(i==3):
+             print("Try after 24 hours ")
+        i=i+1
